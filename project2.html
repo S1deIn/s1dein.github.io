@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Елена Волкова — Фотограф</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Manrope"', 'sans-serif'],
+            serif: ['"Playfair Display"', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.92) translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    .reveal-mask {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-mask.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    @keyframes heroText {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-anim {
+      animation: heroText 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+    }
+    .hero-anim-1 { animation-delay: 0.1s; }
+    .hero-anim-2 { animation-delay: 0.25s; }
+    .hero-anim-3 { animation-delay: 0.4s; }
+    .hero-anim-4 { animation-delay: 0.55s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .float-1 { animation: float 5s ease-in-out infinite; }
+    .float-2 { animation: float 6s ease-in-out 2s infinite; }
+
+    .card-lift {
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .card-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px -12px rgba(26, 26, 26, 0.1);
+    }
+
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #faf9f7; }
+    ::-webkit-scrollbar-thumb { background: #c4b5a5; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-[#faf9f7] text-[#1a1a1a] antialiased overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 flex justify-between items-center backdrop-blur-md bg-[#faf9f7]/80 fade-up">
+    <a href="index.html" class="font-display text-xl font-bold tracking-tight">
+      <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      Назад
+    </a>
+    <div class="hidden md:flex gap-10 text-sm font-display tracking-wide text-neutral-500">
+      <a href="#portfolio" class="hover:text-[#1a1a1a] transition-colors">Портфолио</a>
+      <a href="#about" class="hover:text-[#1a1a1a] transition-colors">Обо мне</a>
+      <a href="#pricing" class="hover:text-[#1a1a1a] transition-colors">Тарифы</a>
+      <a href="#contact" class="hover:text-[#1a1a1a] transition-colors">Контакты</a>
+    </div>
+    <button class="font-display text-sm border border-[#1a1a1a] px-5 py-2.5 rounded-full hover:bg-[#1a1a1a] hover:text-white transition-all">Записаться</button>
+  </nav>
+
+  <!-- Decorative -->
+  <div class="fixed top-40 right-12 w-20 h-20 rounded-full border border-neutral-300/50 float-1 pointer-events-none hidden lg:block"></div>
+  <div class="fixed bottom-32 left-20 w-14 h-14 rounded-full bg-neutral-200/40 float-2 pointer-events-none hidden lg:block"></div>
+
+  <!-- Hero -->
+  <section class="pt-32 md:pt-40 px-6 md:px-12 lg:px-20 pb-16">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end">
+      <div>
+        <p class="font-serif italic text-neutral-500 text-lg md:text-xl mb-4 hero-anim hero-anim-1">Фотограф & Визуальный рассказчик</p>
+        <h1 class="font-display text-6xl md:text-8xl lg:text-9xl font-bold leading-[0.9] tracking-tighter hero-anim hero-anim-2">
+          Елена<br>Волкова
+        </h1>
+      </div>
+      <div class="lg:pb-4 hero-anim hero-anim-3">
+        <p class="text-neutral-600 text-lg md:text-xl leading-relaxed max-w-md">
+          Создаю визуальные истории, которые остаются.
+          10 лет в профессии, 500+ счастливых клиентов.
+        </p>
+        <div class="flex gap-4 mt-8 hero-anim hero-anim-4">
+          <a href="#portfolio" class="group flex items-center gap-2 bg-[#1a1a1a] text-white font-display px-6 py-3 rounded-full hover:bg-[#333] transition-colors">
+            Портфолио
+            <svg class="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </a>
+          <button class="flex items-center gap-2 border border-[#1a1a1a] font-display px-6 py-3 rounded-full hover:bg-[#1a1a1a] hover:text-white transition-all">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            Написать
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Large Hero Image -->
+  <section class="px-6 md:px-12 lg:px-20 pb-24">
+    <div class="max-w-7xl mx-auto">
+      <div class="w-full h-[50vh] md:h-[70vh] rounded-2xl relative overflow-hidden reveal-mask bg-gradient-to-br from-neutral-900 via-neutral-800 to-neutral-900">
+        <img src="images/project2/hero.jpg" alt="Портфолио" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full fade-up">
+          <p class="font-display text-sm font-medium">Последняя съёмка — Москва, 2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section id="portfolio" class="px-6 md:px-12 lg:px-20 py-20 border-t border-neutral-200">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-center justify-between mb-12">
+        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-6 md:mb-0 fade-up">Направления</h2>
+        <div class="flex gap-3 flex-wrap fade-up delay-1">
+          <button class="px-5 py-2 rounded-full font-display text-sm bg-[#1a1a1a] text-white">Все</button>
+          <button class="px-5 py-2 rounded-full font-display text-sm bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-all">Портрет</button>
+          <button class="px-5 py-2 rounded-full font-display text-sm bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-all">Свадьба</button>
+          <button class="px-5 py-2 rounded-full font-display text-sm bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-all">Fashion</button>
+          <button class="px-5 py-2 rounded-full font-display text-sm bg-neutral-200 text-neutral-600 hover:bg-neutral-300 transition-all">Коммерция</button>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="group cursor-pointer scale-in">
+          <div class="aspect-[4/5] rounded-xl mb-4 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=600&q=80" alt="Портрет" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="font-display text-xl font-semibold">Портрет</h3>
+          <p class="text-neutral-500 text-sm">48 работ</p>
+        </div>
+        <div class="group cursor-pointer scale-in delay-1">
+          <div class="aspect-[4/5] rounded-xl mb-4 relative overflow-hidden">
+            <img src="images/project2/gallery2.jpg" alt="Свадьба" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="font-display text-xl font-semibold">Свадьба</h3>
+          <p class="text-neutral-500 text-sm">32 работы</p>
+        </div>
+        <div class="group cursor-pointer scale-in delay-2">
+          <div class="aspect-[4/5] rounded-xl mb-4 relative overflow-hidden">
+            <img src="images/project2/gallery3.jpg" alt="Fashion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="font-display text-xl font-semibold">Fashion</h3>
+          <p class="text-neutral-500 text-sm">24 работы</p>
+        </div>
+        <div class="group cursor-pointer scale-in delay-3">
+          <div class="aspect-[4/5] rounded-xl mb-4 relative overflow-hidden">
+            <img src="images/project2/gallery4.jpg" alt="Коммерция" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          </div>
+          <h3 class="font-display text-xl font-semibold">Коммерция</h3>
+          <p class="text-neutral-500 text-sm">56 работ</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="px-6 md:px-12 lg:px-20 py-20 bg-[#f5f4f2]">
+    <div class="max-w-7xl mx-auto">
+      <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-12 fade-up">Избранные работы</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
+        <!-- Urban Soul -->
+        <div class="col-span-2 row-span-2 rounded-xl relative overflow-hidden group cursor-pointer scale-in bg-neutral-800">
+          <img src="images/project2/gallery1.jpg" alt="Urban Soul" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 flex items-end p-6">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
+              <p class="font-display font-semibold">Urban Soul</p>
+              <p class="text-sm text-white/70">Портрет</p>
+            </div>
+          </div>
+        </div>
+        <!-- Golden Hour -->
+        <div class="col-span-1 row-span-1 rounded-xl relative overflow-hidden group cursor-pointer scale-in delay-1 bg-neutral-800">
+          <img src="images/project2/gallery2.jpg" alt="Golden Hour" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-end p-4">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
+              <p class="font-display font-semibold">Golden Hour</p>
+              <p class="text-sm text-white/80">Свадьба</p>
+            </div>
+          </div>
+        </div>
+        <!-- Vogue Style -->
+        <div class="col-span-1 row-span-2 rounded-xl relative overflow-hidden group cursor-pointer scale-in delay-2 bg-neutral-800">
+          <img src="images/project2/gallery3.jpg" alt="Vogue Style" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 flex items-end p-4">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
+              <p class="font-display font-semibold">Vogue Style</p>
+              <p class="text-sm text-white/70">Fashion</p>
+            </div>
+          </div>
+        </div>
+        <!-- Brand Story -->
+        <div class="col-span-1 row-span-1 rounded-xl relative overflow-hidden group cursor-pointer scale-in delay-1 bg-neutral-800">
+          <img src="images/project2/gallery4.jpg" alt="Brand Story" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-end p-4">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
+              <p class="font-display font-semibold">Brand Story</p>
+              <p class="text-sm text-white/80">Коммерция</p>
+            </div>
+          </div>
+        </div>
+        <!-- Light & Shadow -->
+        <div class="col-span-1 row-span-1 rounded-xl relative overflow-hidden group cursor-pointer scale-in delay-2 bg-neutral-800">
+          <img src="images/project2/gallery5.jpg" alt="Light & Shadow" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-500 flex items-end p-4">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
+              <p class="font-display font-semibold">Light & Shadow</p>
+              <p class="text-sm text-white/70">Портрет</p>
+            </div>
+          </div>
+        </div>
+        <!-- Eternal Love -->
+        <div class="col-span-2 row-span-1 rounded-xl relative overflow-hidden group cursor-pointer scale-in delay-3 bg-neutral-800">
+          <img src="images/project2/gallery6.jpg" alt="Eternal Love" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors duration-500 flex items-end p-6">
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-500 text-white">
+              <p class="font-display font-semibold">Eternal Love</p>
+              <p class="text-sm text-white/80">Свадьба</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="px-6 md:px-12 lg:px-20 py-24">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div class="reveal-mask aspect-[3/4] rounded-2xl overflow-hidden bg-gradient-to-br from-stone-300 via-stone-200 to-stone-300">
+        <img src="images/project2/about.jpg" alt="Елена Волкова" class="w-full h-full object-cover" loading="lazy" onerror="this.style.display='none'">
+      </div>
+      <div>
+        <p class="font-serif italic text-neutral-500 text-lg mb-4 fade-up">Обо мне</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight mb-8 fade-up delay-1">
+          Фотография — это способ говорить без слов
+        </h2>
+        <p class="text-neutral-600 text-lg leading-relaxed mb-6 fade-up delay-2">
+          Я верю, что каждый человек, каждый момент deserve to be seen in their best light.
+          Мой подход — это сочетание технического мастерства и эмоциональной честности.
+        </p>
+        <p class="text-neutral-600 text-lg leading-relaxed mb-8 fade-up delay-3">
+          Работаю с частными клиентами, брендами и изданиями.
+          Специализируюсь на портретной, свадебной и коммерческой фотографии.
+        </p>
+        <div class="grid grid-cols-3 gap-8 fade-up delay-4">
+          <div><p class="font-display text-3xl font-bold">10+</p><p class="text-neutral-500 text-sm">Лет опыта</p></div>
+          <div><p class="font-display text-3xl font-bold">500+</p><p class="text-neutral-500 text-sm">Съёмок</p></div>
+          <div><p class="font-display text-3xl font-bold">50+</p><p class="text-neutral-500 text-sm">Брендов</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="px-6 md:px-12 lg:px-20 py-24 bg-[#1a1a1a] text-white">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <p class="font-serif italic text-neutral-400 text-lg mb-4 fade-up">Тарифы</p>
+        <h2 class="font-display text-4xl md:text-5xl font-bold tracking-tight fade-up delay-1">Инвестиция в память</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="card-lift bg-neutral-900 border border-neutral-800 rounded-2xl p-8 scale-in">
+          <h3 class="font-display text-2xl font-bold mb-2">Базовый</h3>
+          <p class="font-display text-4xl font-bold mb-4">15 000 ₽</p>
+          <p class="text-neutral-400 text-sm mb-8">1 час съёмки, 20 фото в обработке</p>
+          <button class="w-full py-3 rounded-full font-display font-medium bg-white text-[#1a1a1a] hover:bg-neutral-200 transition-all">Выбрать</button>
+        </div>
+        <div class="card-lift bg-white text-[#1a1a1a] rounded-2xl p-8 scale-in delay-1">
+          <span class="inline-block bg-[#1a1a1a] text-white text-xs font-display px-3 py-1 rounded-full mb-4">Популярный</span>
+          <h3 class="font-display text-2xl font-bold mb-2">Стандарт</h3>
+          <p class="font-display text-4xl font-bold mb-4">30 000 ₽</p>
+          <p class="text-neutral-600 text-sm mb-8">3 часа съёмки, 50 фото, 2 локации</p>
+          <button class="w-full py-3 rounded-full font-display font-medium bg-[#1a1a1a] text-white hover:bg-neutral-800 transition-all">Выбрать</button>
+        </div>
+        <div class="card-lift bg-neutral-900 border border-neutral-800 rounded-2xl p-8 scale-in delay-2">
+          <h3 class="font-display text-2xl font-bold mb-2">Премиум</h3>
+          <p class="font-display text-4xl font-bold mb-4">60 000 ₽</p>
+          <p class="text-neutral-400 text-sm mb-8">Полный день, 100+ фото, арт-дирекшн</p>
+          <button class="w-full py-3 rounded-full font-display font-medium bg-white text-[#1a1a1a] hover:bg-neutral-200 transition-all">Выбрать</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="px-6 md:px-12 lg:px-20 py-24">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="font-display text-5xl md:text-7xl font-bold tracking-tight mb-8 fade-up">
+        Давайте создадим<br>что-то прекрасное
+      </h2>
+      <p class="text-neutral-600 text-lg md:text-xl max-w-xl mx-auto mb-10 fade-up delay-1">
+        Оставьте заявку — я свяжусь с вами в течение дня и обсужу детали вашей съёмки.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center fade-up delay-2">
+        <button class="bg-[#1a1a1a] text-white font-display px-8 py-4 rounded-full hover:bg-neutral-800 transition-colors">Оставить заявку</button>
+        <button class="flex items-center justify-center gap-2 border border-[#1a1a1a] font-display px-8 py-4 rounded-full hover:bg-[#1a1a1a] hover:text-white transition-all">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+          +7 (999) 123-45-67
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-200 px-6 md:px-12 lg:px-20 py-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="font-display text-2xl font-bold">Елена Волкова</p>
+      <div class="flex gap-6 text-neutral-500">
+        <svg class="w-5 h-5 cursor-pointer hover:text-[#1a1a1a] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        <svg class="w-5 h-5 cursor-pointer hover:text-[#1a1a1a] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+      </div>
+      <p class="text-neutral-400 text-sm">© 2026 Елена Волкова. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up, .scale-in, .reveal-mask').forEach(el => observer.observe(el));
+    });
+  </script>
+
+<noscript><style>.reveal-mask,.reveal-img,.fade-up,.fade-in,.scale-in{opacity:1!important;transform:none!important;clip-path:inset(0)!important;}</style></noscript>
+</body>
+</html>

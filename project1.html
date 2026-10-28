@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Creative — Digital Agency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            body: ['"Manrope"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Manrope', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #fb923c, #ef4444);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Fade-up animation */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+
+    /* Scale-in for cards */
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.92) translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .scale-in.visible {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+
+    /* Hero text animation */
+    @keyframes heroText {
+      from { opacity: 0; transform: translateY(60px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-anim {
+      animation: heroText 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      opacity: 0;
+    }
+    .hero-anim-1 { animation-delay: 0.1s; }
+    .hero-anim-2 { animation-delay: 0.25s; }
+    .hero-anim-3 { animation-delay: 0.4s; }
+    .hero-anim-4 { animation-delay: 0.55s; }
+
+    /* Decorative floating circles */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    .float-1 { animation: float 5s ease-in-out infinite; }
+    .float-2 { animation: float 5s ease-in-out 2s infinite; }
+    .float-3 { animation: float 6s ease-in-out 1s infinite; }
+
+    /* Smooth scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #080808; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+  </style>
+</head>
+<body class="bg-[#080808] text-white antialiased overflow-x-hidden">
+
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 z-50 px-6 md:px-12 py-6 flex justify-between items-center backdrop-blur-md bg-[#080808]/70 fade-up">
+    <a href="index.html" class="font-display text-xl font-bold tracking-tight">
+      <svg class="w-5 h-5 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      Назад
+    </a>
+    <div class="hidden md:flex gap-10 text-sm font-display tracking-wide text-neutral-400">
+      <a href="#services" class="hover:text-white transition-colors">Услуги</a>
+      <a href="#works" class="hover:text-white transition-colors">Работы</a>
+      <a href="#testimonials" class="hover:text-white transition-colors">Отзывы</a>
+      <a href="#contact" class="hover:text-white transition-colors">Контакты</a>
+    </div>
+  </nav>
+
+  <!-- Decorative floating elements -->
+  <div class="fixed top-32 right-20 w-32 h-32 rounded-full border border-orange-500/10 float-1 pointer-events-none hidden lg:block"></div>
+  <div class="fixed top-64 right-40 w-20 h-20 rounded-full bg-orange-500/5 float-2 pointer-events-none hidden lg:block"></div>
+  <div class="fixed bottom-40 left-16 w-24 h-24 rounded-full border border-orange-500/10 float-3 pointer-events-none hidden lg:block"></div>
+
+  <!-- Hero -->
+  <section class="pt-32 md:pt-48 px-6 md:px-12 lg:px-20 pb-20 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex items-center gap-3 mb-8 hero-anim hero-anim-1">
+        <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+        <span class="text-orange-500 text-sm font-display tracking-widest uppercase">Digital Agency</span>
+      </div>
+      <h1 class="font-display text-6xl md:text-8xl lg:text-[10rem] font-bold leading-[0.9] tracking-tighter mb-8 hero-anim hero-anim-2">
+        Мы создаём<br>
+        <span class="gradient-text">цифровое</span><br>
+        будущее
+      </h1>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-10 mt-16">
+        <p class="text-neutral-400 text-lg md:text-xl max-w-md leading-relaxed hero-anim hero-anim-3">
+          Дизайн, который продаёт. Разработка, которая работает.
+          Стратегия, которая масштабирует.
+        </p>
+        <button class="group flex items-center gap-4 bg-orange-500 hover:bg-orange-600 text-black font-display font-semibold px-8 py-4 rounded-full transition-all w-fit hero-anim hero-anim-4">
+          Начать проект
+          <svg class="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <section class="border-y border-neutral-900">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-10 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="fade-up"><p class="font-display text-3xl md:text-4xl font-bold">120+</p><p class="text-neutral-500 text-sm mt-1 font-display">Проектов</p></div>
+      <div class="fade-up delay-1"><p class="font-display text-3xl md:text-4xl font-bold">8 лет</p><p class="text-neutral-500 text-sm mt-1 font-display">Опыта</p></div>
+      <div class="fade-up delay-2"><p class="font-display text-3xl md:text-4xl font-bold">97%</p><p class="text-neutral-500 text-sm mt-1 font-display">Довольных клиентов</p></div>
+      <div class="fade-up delay-3"><p class="font-display text-3xl md:text-4xl font-bold">15</p><p class="text-neutral-500 text-sm mt-1 font-display">Наград</p></div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="px-6 md:px-12 lg:px-20 py-24 md:py-32">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-neutral-500 text-sm font-display tracking-widest uppercase mb-6 fade-up">Услуги</p>
+      <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-16 max-w-2xl fade-up delay-1">Всё, что нужно для роста бренда</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-neutral-900">
+        <div class="bg-[#080808] p-8 md:p-12 group hover:bg-neutral-900/50 transition-colors scale-in">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl md:text-3xl font-bold">Веб-дизайн</h3>
+            <svg class="w-6 h-6 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">Уникальные макеты, которые выделяют вас среди конкурентов и повышают конверсию.</p>
+        </div>
+        <div class="bg-[#080808] p-8 md:p-12 group hover:bg-neutral-900/50 transition-colors scale-in delay-1">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl md:text-3xl font-bold">Разработка</h3>
+            <svg class="w-6 h-6 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">Современный стек: React, Next.js, TypeScript. Быстрые и надёжные сайты.</p>
+        </div>
+        <div class="bg-[#080808] p-8 md:p-12 group hover:bg-neutral-900/50 transition-colors scale-in delay-2">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl md:text-3xl font-bold">Брендинг</h3>
+            <svg class="w-6 h-6 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">Логотипы, фирменный стиль, гайдлайны. Системный подход к визуалу.</p>
+        </div>
+        <div class="bg-[#080808] p-8 md:p-12 group hover:bg-neutral-900/50 transition-colors scale-in delay-3">
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="font-display text-2xl md:text-3xl font-bold">Маркетинг</h3>
+            <svg class="w-6 h-6 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+          <p class="text-neutral-400 leading-relaxed">SEO, контекстная реклама, аналитика. Приводим целевой трафик.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Work -->
+  <section id="works" class="px-6 md:px-12 lg:px-20 py-24 bg-neutral-950">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div>
+          <p class="text-neutral-500 text-sm font-display tracking-widest uppercase mb-6 fade-up">Избранные работы</p>
+          <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight fade-up delay-1">Кейсы</h2>
+        </div>
+        <button class="mt-6 md:mt-0 text-neutral-400 hover:text-white font-display flex items-center gap-2 transition-colors fade-up delay-2">
+          Все проекты <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="group cursor-pointer scale-in">
+          <div class="rounded-2xl h-64 md:h-80 mb-6 relative overflow-hidden border border-neutral-800 group-hover:border-orange-500/30 transition-colors">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" alt="Aurora Finance" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          </div>
+          <div class="flex justify-between items-start">
+            <div><h3 class="font-display text-2xl font-bold mb-1">Aurora Finance</h3><p class="text-neutral-500 text-sm">Финтех / Веб-дизайн</p></div>
+            <svg class="w-5 h-5 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+        </div>
+        <div class="group cursor-pointer scale-in delay-1">
+          <div class="rounded-2xl h-64 md:h-80 mb-6 relative overflow-hidden border border-neutral-800 group-hover:border-orange-500/30 transition-colors">
+            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Zest E-commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          </div>
+          <div class="flex justify-between items-start">
+            <div><h3 class="font-display text-2xl font-bold mb-1">Zest E-commerce</h3><p class="text-neutral-500 text-sm">E-commerce / Разработка</p></div>
+            <svg class="w-5 h-5 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+        </div>
+        <div class="group cursor-pointer scale-in delay-2">
+          <div class="rounded-2xl h-64 md:h-80 mb-6 relative overflow-hidden border border-neutral-800 group-hover:border-orange-500/30 transition-colors">
+            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&q=80" alt="Pulse Health" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          </div>
+          <div class="flex justify-between items-start">
+            <div><h3 class="font-display text-2xl font-bold mb-1">Pulse Health</h3><p class="text-neutral-500 text-sm">Медтех / Брендинг</p></div>
+            <svg class="w-5 h-5 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+        </div>
+        <div class="group cursor-pointer scale-in delay-3">
+          <div class="rounded-2xl h-64 md:h-80 mb-6 relative overflow-hidden border border-neutral-800 group-hover:border-orange-500/30 transition-colors">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80" alt="Vertex Architecture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          </div>
+          <div class="flex justify-between items-start">
+            <div><h3 class="font-display text-2xl font-bold mb-1">Vertex Architecture</h3><p class="text-neutral-500 text-sm">Архитектура / Веб-дизайн</p></div>
+            <svg class="w-5 h-5 text-neutral-600 group-hover:text-orange-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="px-6 md:px-12 lg:px-20 py-24">
+    <div class="max-w-7xl mx-auto">
+      <p class="text-neutral-500 text-sm font-display tracking-widest uppercase mb-6 fade-up">Отзывы</p>
+      <h2 class="font-display text-4xl md:text-6xl font-bold tracking-tight mb-16 fade-up delay-1">Что говорят клиенты</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8 scale-in">
+          <div class="flex gap-1 mb-6">
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-neutral-300 leading-relaxed mb-6 text-lg">"Команда превзошла все ожидания. Сайт стал главным инструментом продаж."</p>
+          <div><p class="font-display font-semibold">Алексей Петров</p><p class="text-neutral-500 text-sm">CEO, Aurora Finance</p></div>
+        </div>
+        <div class="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8 scale-in delay-1">
+          <div class="flex gap-1 mb-6">
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-neutral-300 leading-relaxed mb-6 text-lg">"Дизайн, который реально конвертирует. Конверсия выросла на 340%."</p>
+          <div><p class="font-display font-semibold">Мария Соколова</p><p class="text-neutral-500 text-sm">Основатель, Zest</p></div>
+        </div>
+        <div class="bg-neutral-900/50 border border-neutral-800 rounded-2xl p-8 scale-in delay-2">
+          <div class="flex gap-1 mb-6">
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="w-4 h-4 fill-orange-500 text-orange-500" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p class="text-neutral-300 leading-relaxed mb-6 text-lg">"Профессионализм на каждом этапе. Рекомендую всем, кто ценит качество."</p>
+          <div><p class="font-display font-semibold">Дмитрий Ким</p><p class="text-neutral-500 text-sm">Директор, Pulse Health</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contact" class="px-6 md:px-12 lg:px-20 py-24 md:py-40">
+    <div class="max-w-7xl mx-auto text-center">
+      <h2 class="font-display text-5xl md:text-8xl lg:text-9xl font-bold tracking-tighter mb-10 fade-up">Давайте<br>создадим</h2>
+      <button class="group inline-flex items-center gap-4 bg-orange-500 hover:bg-orange-600 text-black font-display font-semibold text-lg px-10 py-5 rounded-full transition-all fade-up delay-2">
+        Обсудить проект
+        <svg class="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17L17 7M17 7H7M17 7v10"></path></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-neutral-900 px-6 md:px-12 lg:px-20 py-12">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+      <p class="font-display text-xl font-bold">Nexus Creative</p>
+      <p class="text-neutral-600 text-sm">© 2026 Nexus Creative. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+      document.querySelectorAll('.fade-up, .scale-in').forEach(el => observer.observe(el));
+    });
+  </script>
+
+<noscript><style>.reveal-mask,.reveal-img,.fade-up,.fade-in,.scale-in{opacity:1!important;transform:none!important;clip-path:inset(0)!important;}</style></noscript>
+</body>
+</html>
